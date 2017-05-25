@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'digital-7-mono';
+    src: url('components/assets/fonts/digital-7-mono.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.current-time__content {
+    @include position-center;
+    text-align: center;
+}
+
+.current-time__time {
+	font-family: digital-7-mono;
+    font-size: setting($font-size, xxl);
+    letter-spacing: .05em;
+    line-height: 1;
+}
+
+.current-time__date {
+    @include font-sans-bold;
+    color: color($orange);
+    font-size: setting($font-size, m);
+}
