@@ -1,7 +1,7 @@
 <template>
 	<grid :position="grid" :modifiers="modifiers">
     <div id="forecastGraphWrapper" >
-      <h4>Weekly Forecast</h4>
+      <!-- <h4>Weekly Forecast</h4> -->
       <vue-chart v-if="forecast.ready" type="line" :data="forecastHourly" :options="cahrtOptions" :width="chartWidth" :height="chartHeight"></vue-chart>
     </div>
   </grid>
@@ -42,7 +42,7 @@ export default {
     },
     chartHeight () {
       if (this.forecast.ready) {
-        return document.getElementById('forecastGraphWrapper').clientHeight * 0.6
+        return document.getElementById('forecastGraphWrapper').clientHeight * 0.75
       }
     }
   }

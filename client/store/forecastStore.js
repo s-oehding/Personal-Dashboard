@@ -56,7 +56,6 @@ const mutations = {
 }
 
 const actions = {
-  // Send a request to the login URL and save the returned JWT
   getForecast: ({commit}, location) => {
     axios({
       method: 'get',

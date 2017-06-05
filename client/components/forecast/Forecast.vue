@@ -2,6 +2,7 @@
   <grid :position="grid" :modifiers="modifiers">
     <div v-if="forecast.ready" id="local-weather-wrapper">
     <h4>Local Weather</h4>
+    <h6>{{ location.data.city }} {{ location.data.country }}</h6>
     <div class="weather-situation">
       <div class="icon-wrapper current">
         <i class="wi current-icon" :class="'wi-forecast-io-' + forecast.data.currently.icon"></i>
@@ -48,20 +49,12 @@
               <td id="weather-widget-wind">{{ forecast.data.currently.windBearing | degToCompass }} </td>
           </tr>
           <tr>
-              <td><i class="wi wi-cloudy"></i> Cloudiness</td>
-              <td id="weather-widget-cloudiness">{{ forecast.data.currently.cloudCover }} %</td>
-          </tr>
-          <tr>
               <td><i class="wi wi-barometer"></i> Pressure</td>
               <td id="weather-widget-pressure">{{ forecast.data.currently.pressure }} hpa</td>
           </tr>
           <tr>
               <td><i class="wi wi-humidity"></i> Humidity</td>
               <td id="weather-widget-humidity">{{ forecast.data.currently.humidity }} %</td>
-          </tr>
-          <tr>
-              <td><i class="wi wi-sunny"></i> Ozone</td>
-              <td id="weather-widget-sunrise">{{ forecast.data.currently.ozone }}</td>
           </tr>
       </tbody>
     </table>
@@ -71,7 +64,7 @@
 
 <script>
 import Grid from '../partials/grid'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import { toTime, degToCompass } from '../../filters'
 
 export default {
@@ -82,39 +75,29 @@ export default {
   props: ['grid', 'modifiers'],
   data () {
     return {
-      location: {
-        lat: 49.4035106,
-        lng: 8.681388
-      },
-      ready: false
     }
   },
   filters: {
     toTime, degToCompass
   },
   created () {
-    if (!this.location.lat === 0 && !this.location.lat === 0) {
-      this.getForecast(this.location)
-    }
-    this.getGeolocation()
   },
   mounted () {
-    this.getForecast(this.location)
+    setTimeout(function() {
+      let position = {
+        lat: parseFloat(this.location.data.latt),
+        lng: parseFloat(this.location.data.longt)
+      }
+      this.getForecast(position)
+    }.bind(this), 1000)
   },
   computed: {
-    forecast () {
-      return this.$store.getters.forecast
-    }
+    ...mapGetters({
+      location: 'location',
+      forecast: 'forecast'
+    })
   },
   methods: {
-    getGeolocation () {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-          this.location.lng = position.coords.longitude
-          this.location.lat = position.coords.latitude
-        }.bind(this))
-      }
-    },
     ...mapActions([
       'getForecast'
     ])

@@ -3,12 +3,16 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import miniToastr from 'mini-toastr'
 import auth from './auth'
 export default {
   data: function() {
     return {
     }
+  },
+  created () {
+    this.getLocation()
   },
   mounted () {
     miniToastr.init()
@@ -19,6 +23,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'getLocation'
+    ])
   }
 }
 </script>
