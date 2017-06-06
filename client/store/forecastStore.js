@@ -35,7 +35,7 @@ const getters = {
     }
     if (state.ready) {
       for (let element of state.data.daily.data) {
-        data.labels.push(moment.unix(element.time).format('dddd Do'))
+        data.labels.push(moment.unix(element.time).format('dddd'))
         data.datasets[0].data.push(element.temperatureMin)
         data.datasets[1].data.push(element.temperatureMax)
       }

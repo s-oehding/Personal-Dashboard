@@ -1,8 +1,15 @@
 <template>
 	<grid :position="grid" :modifiers="modifiers">
     <div id="forecastGraphWrapper" >
-      <!-- <h4>Weekly Forecast</h4> -->
-      <vue-chart v-if="forecast.ready" type="line" :data="forecastHourly" :options="cahrtOptions" :width="chartWidth" :height="chartHeight"></vue-chart>
+      <h4>Weekly Forecast</h4>
+      <vue-chart
+        v-if="forecast.ready"
+        type="line"
+        :data="forecastHourly"
+        :options="options"
+        :width="chartWidth"
+        :height="chartHeight">
+        </vue-chart>
     </div>
   </grid>
 </template>
@@ -19,7 +26,7 @@ export default {
   props: ['grid', 'modifiers'],
   data() {
     return {
-      cahrtOptions: {
+      options: {
         legend: {
           display: false
         }
@@ -27,6 +34,7 @@ export default {
     }
   },
   mounted () {
+    console.log(this.$refs.chart)
   },
   computed: {
     forecast () {
@@ -37,7 +45,7 @@ export default {
     },
     chartWidth () {
       if (this.forecast.ready) {
-        return document.getElementById('forecastGraphWrapper').clientWidth * 0.75
+        return document.getElementById('forecastGraphWrapper').clientWidth
       }
     },
     chartHeight () {

@@ -4,21 +4,6 @@
   </div>
 </template>
 
-<style lang="sass">
-  .gravatar-img {
-    display:inline-block;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
-    img{
-      -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
-    }
-
-  }
-</style>
-
 <script>
   import md5 from 'md5'
 
@@ -50,9 +35,24 @@
           defPicture = ''
         }
 
-        // Génère une URL --> 'http://www.gravatar.com/avatar/hashToutMoche?s=80&d=mm'
+        // Generate Gravatar URL
         return this.endpoint + hash + size + defPicture
       }
     }
   }
 </script>
+
+<style lang="sass">
+  .gravatar-img {
+    display:inline-block;
+    padding: .5rem;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    img{
+      -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    }
+  }
+</style>

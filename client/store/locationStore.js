@@ -3,6 +3,14 @@ import axios from 'axios'
 // URL and endpoint constants
 const API_URL = 'https://geocode.xyz/'
 
+function getGeoLocation (options) {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.watchPosition(resolve, reject, options)
+  })
+}
+
+// VUE Store
+
 const state = {
   data: {},
   ready: false
@@ -25,15 +33,10 @@ const mutations = {
   }
 }
 
-function getGeoLocation (options) {
-  return new Promise(function (resolve, reject) {
-    navigator.geolocation.getCurrentPosition(resolve, reject, options)
-  })
-}
-
 const actions = {
   getLocation: ({commit}) => {
-    getGeoLocation()
+    let options = { enableHighAccuracy: true }
+    getGeoLocation(options)
       .then((position) => {
         axios({
           method: 'get',

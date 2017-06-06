@@ -23,7 +23,7 @@ export default {
   #page-content {
     background: gray;
     height: 100vh;
-    width: calc(100% - 300px);
-    float: left;
+    width: calc(100% - 60px);
+    // float: left;
   }
 </style>
