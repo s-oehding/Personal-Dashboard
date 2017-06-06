@@ -14,8 +14,10 @@
         </li>
       </ul>
     </nav>
-    <nav class="user">
-      <gravatar :email="authUser.user.email"></gravatar>
+    <nav class="user-nav">
+      <div class="user-image">
+        <gravatar :email="authUser.user.email"></gravatar>
+      </div>
     </nav>
   </aside>
 </template>
@@ -40,6 +42,7 @@ export default {
 </script>
 
 <style lang="sass">
+@import '../assets/scss/utility/mixins';
 aside {
   background: #292b2c;
   color: rgba(255, 255, 255, 0.5);
@@ -47,13 +50,20 @@ aside {
   height: 100vh;
   float: left;
   display: inline-block;
-  .user {
+  @include dropShadow();
+  z-index: 10;
+  .user-nav {
+    padding: .5rem;
     width: 60px;
     height: 60px;
-    border: 2px solid #606c76;
-    border-radius: 50%;
     position: absolute;
     bottom: 1rem;
+    .user-image {
+      width: 50px;
+      height: 50px;
+      border: 2px solid #606c76;
+      border-radius: 50%;
+    }
   }
   .menu {
     list-style-type: none;
@@ -81,6 +91,7 @@ aside {
           visibility: hidden;
           opacity: 0;
           z-index: -1;
+          @include dropShadow();
         }
 
         &:hover:after {
@@ -131,6 +142,8 @@ aside {
                 border: 0px solid transparent;
                 border-left-color: #9b4dca;
                 border-width: 30px .75rem;
+                @include dropShadow();
+                z-index: -1;
             }
           }
 

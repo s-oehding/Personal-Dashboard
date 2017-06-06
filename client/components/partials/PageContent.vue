@@ -24,6 +24,6 @@ export default {
     background: gray;
     height: 100vh;
     width: calc(100% - 60px);
-    // float: left;
+    z-index: 0;
   }
 </style>
