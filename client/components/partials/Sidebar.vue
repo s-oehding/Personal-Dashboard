@@ -15,7 +15,7 @@
       </ul>
     </nav>
     <nav class="user-nav">
-      <div class="user-image">
+      <div v-if="authUser.user.email" class="user-image">
         <gravatar :email="authUser.user.email"></gravatar>
       </div>
     </nav>

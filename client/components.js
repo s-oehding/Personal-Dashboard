@@ -1,5 +1,14 @@
 import Vue from 'vue'
 
+// Google Maps
+// https://github.com/s-oehding/vue-google-maps
+import * as VueGoogleMaps from 'vue2-google-maps'
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyBT99ywTt8pGhgHkeYY9kxbtOjlFH8OqRc'
+  }
+})
+
 import Navbar from './components/partials/Navbar'
 Vue.component('navbar', Navbar)
 import Preloader from './components/partials/Preloader'
@@ -19,3 +28,6 @@ Vue.component('forecast-graph', ForecastGraph)
 
 import DateTime from './components/DateTime'
 Vue.component('datetime', DateTime)
+
+import GMap from './components/google/GMap'
+Vue.component('g-map', GMap)

@@ -5,7 +5,7 @@ const API_URL = 'https://geocode.xyz/'
 
 function getGeoLocation (options) {
   return new Promise(function (resolve, reject) {
-    navigator.geolocation.watchPosition(resolve, reject, options)
+    navigator.geolocation.getCurrentPosition(resolve, reject, options)
   })
 }
 
