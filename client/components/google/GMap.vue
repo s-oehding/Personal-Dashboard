@@ -1,6 +1,7 @@
 <template>
 	<grid :position="grid" :modifiers="modifiers">
     <gmap-map
+      v-if="location.ready"
       :center="center"
       :zoom="7"
       style="width: 100%; height: 100%"
@@ -27,8 +28,8 @@ export default {
   data() {
     return {
       center: {
-        lat: null,
-        lng: null
+        lat: 0,
+        lng: 0
       }
     }
   },

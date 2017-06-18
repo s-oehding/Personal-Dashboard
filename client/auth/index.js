@@ -11,11 +11,6 @@ const SIGNUP_URL = API_URL + 'users/'
 // const VERIFY_URL = API_URL + 'token/verify'
 
 export default {
-
-  // User object will let us check authentication status
-  user: {
-    authenticated: false
-  },
   // Send a request to the login URL and save the returned JWT
   login (creds, redirect) {
     axios.post(LOGIN_URL, creds, (data) => {

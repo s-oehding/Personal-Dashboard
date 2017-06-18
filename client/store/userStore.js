@@ -37,6 +37,20 @@ const mutations = {
 }
 
 const actions = {
+
+  // Check user authentication status
+  setAuthUser: ({commit}) => {
+    let authUser = JSON.parse(window.localStorage.getItem('authUser'))
+    if (authUser && authUser.exp > Math.floor(Date.now() / 1000)) {
+      commit('SET_AUTH_USER', authUser)
+    } else if (authUser && authUser.exp < Math.floor(Date.now() / 1000)) {
+      VueNotifications.info({message: 'Token expired please re-login'})
+      return false
+    } else {
+      return false
+    }
+  },
+
   // Send a request to the login URL and save the returned JWT
   userLogin: ({commit}, params) => {
     axios.post(LOGIN_URL, params.credentials)

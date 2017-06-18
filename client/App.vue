@@ -5,7 +5,6 @@
 <script>
 import { mapActions } from 'vuex'
 import miniToastr from 'mini-toastr'
-import auth from './auth'
 export default {
   data: function() {
     return {
@@ -13,18 +12,14 @@ export default {
   },
   created () {
     this.getLocation()
+    this.setAuthUser()
   },
   mounted () {
     miniToastr.init()
-    if (auth.checkAuth()) {
-      let userStorage = window.localStorage.getItem('authUser')
-      let userObject = JSON.parse(userStorage)
-      this.$store.commit('SET_AUTH_USER', userObject)
-    }
   },
   methods: {
     ...mapActions([
-      'getLocation'
+      'getLocation', 'setAuthUser'
     ])
   }
 }
